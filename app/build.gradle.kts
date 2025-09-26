@@ -42,7 +42,6 @@ android {
 
 dependencies {
     implementation("com.google.code.gson:gson:2.13.1")
-    implementation("com.google.bumptech.glide:glide:4.16.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
