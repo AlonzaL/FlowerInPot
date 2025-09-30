@@ -1,4 +1,4 @@
-package com.example.flowerinpot
+package com.example.flowerinpot.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,9 +32,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.flowerinpot.R
+import com.example.flowerinpot.ui.viewModel.MainViewModel
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    viewModel: MainViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -103,6 +110,23 @@ fun MainScreen() {
                 unfocusedIndicatorColor = Color.LightGray
             )
         )
+
+        Text(
+            text = "Category",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            items(viewModel.loadCategory().value) { category ->
+                Text(
+                    text = category.title
+                )
+
+            }
+        }
 
         Row(
             modifier = Modifier
